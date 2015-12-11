@@ -9,8 +9,8 @@
     smallest = 6
     largest = 22
     totals = data.collect { |aid, d| d["total"].to_i }
-    totals_min = totals.min
-    totals_max = totals.max
+    totals_min = totals.min || 0
+    totals_max = totals.max || 0
     font_step = (largest - smallest).to_f / [totals_max - totals_min, 1].max.to_f
 %>
 
