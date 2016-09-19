@@ -18,7 +18,7 @@
 				<tr class="<%= cycle('odd', 'even') %> <%= version.overdue? ? 'version_overdue' : '' %>">
 					<td><%= link_to(h(version.project), :controller => 'projects', :action => 'show', :id => version.project) %></td>
 					<td><%= link_to(h(version.name), :controller => 'versions', :action => 'show', :id => version) %></td>
-					<td class="progress-cell"><%= progress_bar([version.closed_pourcent, version.completed_pourcent], :width => '10em', :legend => ('%0.0f%' % version.completed_pourcent)) %></td>
+					<td class="progress-cell"><%= progress_bar([version.closed_percent, version.completed_percent], :width => '10em', :legend => ('%0.0f%' % version.completed_percent)) %></td>
 					<td><%= format_date(version.effective_date) %></td>
 		    	</tr>
 		    <% end %>  
