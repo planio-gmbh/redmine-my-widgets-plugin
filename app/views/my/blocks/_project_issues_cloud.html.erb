@@ -1,6 +1,7 @@
 <%    
     projects = User.current.memberships.collect {|m| m.project if m.roles.each {|role| role.allowed_to?(:view_issues)}}
-    data = ActiveRecord::Base.connection.select_all("select p.id as project_id, count(i.id) as total 
+    data = [] if projects.empty?
+    data ||= ActiveRecord::Base.connection.select_all("select p.id as project_id, count(i.id) as total
 												from #{Issue.table_name} i, #{IssueStatus.table_name} s, #{Project.table_name} p
 												where i.status_id=s.id and i.project_id=p.id and s.is_closed = false
 												and p.id in ("+projects.collect{|p| p.id}.join(",")+")
